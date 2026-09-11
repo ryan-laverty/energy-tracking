@@ -18,11 +18,15 @@ public class LoggingAspect {
 
     @Before("serviceMethods()")
     public void logBefore(JoinPoint joinPoint) {
-        log.info("Called service method: {} with arguments: {}", joinPoint.getSignature().getName(), joinPoint.getArgs());
+        log.info("Called service method: {} with arguments: {}",
+                joinPoint.getSignature().getName(), joinPoint.getArgs());
     }
 
     @AfterReturning(pointcut = "serviceMethods()", returning = "result")
-    public void logAfter(JoinPoint joinPoint, Object result) {
-        log.info("Service method: {} returned: {}", joinPoint.getSignature().getName(), result);
+    public void logAfterReturning(JoinPoint joinPoint, Object result) {
+        log.info("Service method: {}, returned: {}",
+                joinPoint.getSignature().getName(), result);
     }
+
+
 }
